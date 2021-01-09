@@ -1,13 +1,15 @@
 package ru.netology.domain;
 
 public class Radio {
-    private int maxVolume = 10;
+    private int maxVolume = 100;
     private int minVolume = 0;
-    private int maxChannel = 9;
+    private int maxChannel = 10;
     private int minChannel = 0;
     private int currentVolume;
     private int currentChannel;
+    public Radio(){
 
+    }
     public int getMaxVolume() {
         return maxVolume;
     }
@@ -45,56 +47,26 @@ public class Radio {
     }
 
     public void setCurrentVolume(int currentVolume) {
-
-             this.currentVolume = currentVolume;
+        this.currentVolume = currentVolume;
     }
-
-
-    public void switchCurrentVolume() {
-        if (currentVolume >= maxVolume) {
-            this.currentVolume = maxVolume;
-            return;
-        }
-        if (currentVolume <= minChannel) {
-            this.currentVolume = minVolume;
-            return;
-        }
-         currentVolume++;
-        return;
-        }
 
     public int getCurrentChannel() {
         return currentChannel;
     }
 
-
     public void setCurrentChannel(int currentChannel) {
-
-             this.currentChannel = currentChannel;
+        this.currentChannel = currentChannel;
     }
 
-    public void switcCurrentChannel() {
-        if (currentChannel > maxChannel) {
-            this.currentChannel = minChannel;
-            return;
-
-        }
-        if (currentChannel < minChannel) {
-            this.currentChannel = maxChannel;
-            return;
-        }
-         if (currentChannel == maxChannel) {
-             this.currentChannel=maxChannel;
-             return;
-         }
-         if(currentChannel==minChannel){
-             this.currentChannel=minChannel;
-             return;
-         }
-         currentChannel++;
-         return;
-
+    public Radio(int maxVolume, int minVolume, int maxChannel, int minChannel, int currentVolume, int currentChannel) {
+        this.maxVolume = maxVolume;
+        this.minVolume = minVolume;
+        this.maxChannel = maxChannel;
+        this.minChannel = minChannel;
+        this.currentVolume = currentVolume;
+        this.currentChannel = currentChannel;
     }
-
-
 }
+
+
+
