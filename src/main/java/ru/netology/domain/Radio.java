@@ -7,9 +7,9 @@ public class Radio {
     private int minChannel = 0;
     private int currentVolume;
     private int currentChannel;
-    public Radio(){
+    private boolean nextChannel;
+    private boolean nextVolume;
 
-    }
     public int getMaxVolume() {
         return maxVolume;
     }
@@ -58,14 +58,76 @@ public class Radio {
         this.currentChannel = currentChannel;
     }
 
-    public Radio(int maxVolume, int minVolume, int maxChannel, int minChannel, int currentVolume, int currentChannel) {
+    public boolean isNextChannel() {
+        return nextChannel;
+    }
+
+    public void setNextChannel(boolean nextChannel) {
+        this.nextChannel = nextChannel;
+    }
+
+    public boolean isNextVolume() {
+        return nextVolume;
+    }
+
+    public void setNextVolume(boolean nextVolume) {
+        this.nextVolume = nextVolume;
+    }
+    public Radio(){
+
+    }
+
+    public Radio(int maxVolume, int minVolume, int maxChannel, int minChannel, int currentVolume, int currentChannel, boolean nextChannel, boolean nextVolume) {
         this.maxVolume = maxVolume;
         this.minVolume = minVolume;
         this.maxChannel = maxChannel;
         this.minChannel = minChannel;
         this.currentVolume = currentVolume;
         this.currentChannel = currentChannel;
+        this.nextChannel = nextChannel;
+        this.nextVolume = nextVolume;
     }
+
+    public int switchChannel() {
+        if (currentChannel > maxChannel) {
+            currentChannel = minChannel;
+            return minChannel;
+        }
+        if (currentChannel < minChannel) {
+            currentChannel = maxChannel;
+            return maxChannel;
+        }
+        if (currentChannel == maxChannel) {
+            currentChannel = maxChannel;
+            return maxChannel;
+        }
+        if (nextChannel == true) {
+            return currentChannel++;
+        }
+         else {
+             return currentChannel--;
+        }
+        }
+
+        public int switchVolume() {
+            if (currentVolume > maxVolume) {
+                currentVolume = maxVolume;
+                return maxVolume;
+            }
+            if (currentVolume < minVolume) {
+                currentVolume = minVolume;
+                return minVolume;
+            }
+            if (nextVolume == true) {
+                return currentVolume++;
+            }
+                else {
+                return  currentVolume--;
+            }
+
+
+        }
+
 }
 
 

@@ -9,109 +9,104 @@ import static org.junit.jupiter.api.Assertions.*;
 class RadioTest {
 
 
+    @Test
+    void shouldUseChannelRadio() {
+        Radio radio = new Radio(
+                100,
+                0,
+                10,
+                0,
+                20,
+                20, true, true
+        );
+
+        assertEquals(0, radio.switchChannel());
+        assertEquals(20, radio.switchVolume());
+        assertEquals(10, radio.getMaxChannel());
+        assertEquals(100, radio.getMaxVolume());
+        assertEquals(0, radio.getMinVolume());
+        assertEquals(0, radio.getMinChannel());
+        assertEquals(true, radio.isNextChannel());
+        assertEquals(true, radio.isNextVolume());
+    }
 
     @Test
-    void shouldSwitchCurrentVolumeMax() {
+    void shouldUseNotArgRadio() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(10);
-        radio.switchCurrentVolume();
-        assertEquals(10,radio.getCurrentVolume());
-    }
-    @Test
-    void shouldSwitchCurrentVolumeMin() {
-        Radio radio =new Radio();
-        radio.setCurrentVolume(0);
-        radio.switchCurrentVolume();
-        assertEquals(0,radio.getCurrentVolume());
-    }
-    @Test
-    void shouldSwitchCurrentVolumeDownMin() {
-        Radio radio =new Radio();
-        radio.setCurrentVolume(-1);
-        radio.switchCurrentVolume();
-        assertEquals(0,radio.getCurrentVolume());
-    }
-    @Test
-    void shouldSwitchCurrentVolumeUpMax() {
-        Radio radio =new Radio();
-        radio.setCurrentVolume(11);
-        radio.switchCurrentVolume();
-        assertEquals(10,radio.getCurrentVolume());
+        {
+            assertEquals(10, radio.getMaxChannel());
+        }
     }
 
-
-
     @Test
-    void shouldSwitchCurrentChannelMax() {
+    void shouldNextChannel() {
         Radio radio = new Radio();
         radio.setCurrentChannel(9);
-        radio.switcCurrentChannel();
-        assertEquals(0,radio.getCurrentVolume());
+        radio.setNextChannel(true);
+        radio.switchChannel();
+        assertEquals(10, radio.switchChannel());
     }
     @Test
-    void shouldSwitchCurrentChannelMin() {
-        Radio radio =new Radio();
-        radio.setCurrentChannel(0);
-        radio.switcCurrentChannel();
-        assertEquals(0,radio.getCurrentChannel());
-    }
-    @Test
-    void shouldSwitchCurrentChannelDownMin() {
-        Radio radio =new Radio();
-        radio.setCurrentChannel(-1);
-        radio.switcCurrentChannel();
-        assertEquals(9,radio.getCurrentChannel());
-    }
-    @Test
-    void shouldSwitchCurrentChannelUpMax() {
-        Radio radio =new Radio();
-        radio.setCurrentChannel(11);
-        radio.switcCurrentChannel();
-        assertEquals(0,radio.getCurrentChannel());
-    }
+    void shouldPrevChannelAndVolume() {
 
-    @Test
-    void prewCurrentChannel() {
-        Radio radio =new Radio();
-        radio.setCurrentChannel(5);
-        radio.switcCurrentChannel();
-        assertEquals(6,radio.getCurrentChannel());
-    }
+        Radio radio = new Radio(
+                100,
+                0,
+                10,
+                0,
+                20,
+                9, false, false
+        );
+        radio.switchChannel();
+        radio.switchVolume();
 
-
-    @Test
-    void prewCurrentVolume() {
-        Radio radio =new Radio();
-        radio.setCurrentVolume(5);
-        radio.switchCurrentVolume();
-        assertEquals(6,radio.getCurrentVolume());
-    }
-
-
-
-    @Test
-    void setMaxVolume() {
-        Radio radio =new Radio();
-        assertEquals(10,radio.getMaxVolume());
+        assertEquals(8, radio.switchChannel());
+        assertEquals(19, radio.switchVolume());
 
     }
-
     @Test
-    void setMinVolume() {
-        Radio radio =new Radio();
-        assertEquals(0,radio.getMinVolume());
+    void shouldNextVolume() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(7);
+        radio.setNextVolume(true);
+        radio.switchVolume();
+        assertEquals(8, radio.switchVolume());
     }
-
     @Test
-    void setMaxChannel() {
-        Radio radio =new Radio();
-        assertEquals(9,radio.getMaxChannel());
+    void shouldBoarderUpChannelAndVolume() {
+
+        Radio radio = new Radio(
+                100,
+                0,
+                10,
+                0,
+                120,
+                19, true, true
+        );
+        radio.switchChannel();
+        radio.switchVolume();
+
+        assertEquals(0, radio.switchChannel());
+        assertEquals(100, radio.switchVolume());
+
     }
-
     @Test
-    void setMinChannel() {
-        Radio radio =new Radio();
-        assertEquals(0,radio.getMinChannel());
+    void shouldBoarderDownChannelAndVolume() {
+
+        Radio radio = new Radio(
+                100,
+                0,
+                10,
+                0,
+                -10,
+                -10, true, true
+        );
+        radio.switchChannel();
+        radio.switchVolume();
+
+        assertEquals(10, radio.switchChannel());
+        assertEquals(0, radio.switchVolume());
 
     }
 }
+
