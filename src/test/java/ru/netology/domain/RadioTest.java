@@ -36,6 +36,7 @@ class RadioTest {
         {
             assertEquals(10, radio.getMaxChannel());
         }
+
     }
 
     @Test
