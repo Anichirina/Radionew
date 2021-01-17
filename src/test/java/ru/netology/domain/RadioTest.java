@@ -17,17 +17,16 @@ class RadioTest {
                 10,
                 0,
                 20,
-                20, true, true
+                20
         );
 
         assertEquals(0, radio.switchChannel());
-        assertEquals(20, radio.switchVolume());
+        assertEquals(20,radio.switchVolume());
         assertEquals(10, radio.getMaxChannel());
         assertEquals(100, radio.getMaxVolume());
         assertEquals(0, radio.getMinVolume());
         assertEquals(0, radio.getMinChannel());
-        assertEquals(true, radio.isNextChannel());
-        assertEquals(true, radio.isNextVolume());
+
     }
 
     @Test
@@ -43,9 +42,9 @@ class RadioTest {
     void shouldNextChannel() {
         Radio radio = new Radio();
         radio.setCurrentChannel(9);
-        radio.setNextChannel(true);
-        radio.switchChannel();
-        assertEquals(10, radio.switchChannel());
+
+        radio.nextChannel();
+        assertEquals(10, radio.nextChannel());
     }
     @Test
     void shouldPrevChannelAndVolume() {
@@ -56,22 +55,30 @@ class RadioTest {
                 10,
                 0,
                 20,
-                9, false, false
+                9
         );
-        radio.switchChannel();
-        radio.switchVolume();
+        radio.prewChannel();
+        radio.prewVolume();
 
-        assertEquals(8, radio.switchChannel());
-        assertEquals(19, radio.switchVolume());
+        assertEquals(8, radio.prewChannel());
+        assertEquals(19, radio.prewVolume());
 
     }
     @Test
     void shouldNextVolume() {
         Radio radio = new Radio();
         radio.setCurrentVolume(7);
-        radio.setNextVolume(true);
-        radio.switchVolume();
-        assertEquals(8, radio.switchVolume());
+
+        radio.nextVolume();
+        assertEquals(8, radio.nextVolume());
+    }
+    @Test
+            void shouldPrewVolume(){
+        Radio radio = new Radio();
+        radio.setCurrentVolume(7);
+        radio.prewVolume();
+        assertEquals(6, radio.prewVolume());
+
     }
     @Test
     void shouldBoarderUpChannelAndVolume() {
@@ -82,7 +89,7 @@ class RadioTest {
                 10,
                 0,
                 120,
-                19, true, true
+                19
         );
         radio.switchChannel();
         radio.switchVolume();
@@ -100,7 +107,7 @@ class RadioTest {
                 10,
                 0,
                 -10,
-                -10, true, true
+                -10
         );
         radio.switchChannel();
         radio.switchVolume();

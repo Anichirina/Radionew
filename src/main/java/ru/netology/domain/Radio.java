@@ -14,8 +14,6 @@ public class Radio {
     private int minChannel = 0;
     private int currentVolume;
     private int currentChannel;
-    private boolean nextChannel;
-    private boolean nextVolume;
 
 
     public int switchChannel() {
@@ -31,15 +29,12 @@ public class Radio {
             currentChannel = maxChannel;
             return maxChannel;
         }
-        if (nextChannel == true) {
-            return currentChannel++;
-        }
-         else {
-             return currentChannel--;
-        }
-        }
+        return currentChannel++;
 
-        public int switchVolume() {
+    }
+
+
+        public int switchVolume(){
             if (currentVolume > maxVolume) {
                 currentVolume = maxVolume;
                 return maxVolume;
@@ -48,16 +43,25 @@ public class Radio {
                 currentVolume = minVolume;
                 return minVolume;
             }
-            if (nextVolume == true) {
-                return currentVolume++;
-            }
-                else {
-                return  currentVolume--;
-            }
 
-
-        }
-
+            return currentVolume++;
+    }
+    public int prewChannel(){
+        if(currentChannel==maxChannel);
+       return currentChannel--;
+                 }
+    public int nextChannel(){
+        if(currentChannel==minChannel);
+        return currentChannel++;
+    }
+    public int prewVolume(){
+    if(currentVolume==maxVolume);
+    return currentVolume--;
+}
+    public int nextVolume(){
+        if(currentVolume==minVolume);
+        return currentVolume++;
+    }
 }
 
 
